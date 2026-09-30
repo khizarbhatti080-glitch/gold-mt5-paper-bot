@@ -1,0 +1,57 @@
+mode: paper
+mt5_terminal_path: 'C:\Program Files\MetaTrader 5\terminal64.exe'
+enable_order_submission: false
+live_confirmation: ""
+symbol: XAUUSD
+timeframe: M15
+strategy: unified_gold_confluence_v1
+ai_review:
+  enabled: true
+  mode: gate
+  model: gpt-6-luna
+  max_calls_per_day: 100
+  timeout_seconds: 12
+  log: logs/ai_gate_reviews.jsonl
+news:
+  enabled: true
+  source: forexfactory
+  max_age_minutes: 360
+  high_buffer_minutes: 30
+  major_buffer_minutes: 60
+magic_number: 26091908
+poll_seconds: 5
+
+instruments:
+  - {symbol: XAUUSD, enabled: true, point_size: 0.01, spread_price_fallback: 0.30, slippage_price: 0.05}
+  - {symbol: GBPUSD, enabled: false, point_size: 0.00001, spread_price_fallback: 0.00020, slippage_price: 0.00005}
+
+risk:
+  risk_per_trade_pct: 0.25
+  daily_profit_target_pct: 1.0
+  daily_loss_limit_pct: 1.0
+  max_trades_per_day: 2
+  max_open_positions: 1
+  max_spread_points: 100
+  min_stop_points: 10
+  max_stop_points: 10000
+  max_lot: 0.10
+  consecutive_loss_limit: 3
+  emergency_drawdown_pct: 5.0
+  max_total_lots: 0.20
+
+session: {timezone: UTC, start: "00:00", end: "23:59"}
+execution: {deviation_points: 30, comment: v08-virtual-paper}
+backtest: {initial_balance: 10000}
+paper:
+  initial_balance: 10000
+  state: state/gold_confluence_paper_v1.json
+  trades: logs/gold_confluence_paper_v1.csv
+validation_gates:
+  minimum_out_of_sample_trades: 100
+  minimum_profit_factor: 1.20
+  maximum_drawdown_pct: 10.0
+  require_positive_out_of_sample: true
+paths:
+  daily_state: state/portfolio_daily_state.json
+  journal: logs/portfolio_trades.sqlite3
+  kill_switch: state/portfolio_kill_switch.json

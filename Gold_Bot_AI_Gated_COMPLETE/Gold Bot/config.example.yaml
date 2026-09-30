@@ -1,0 +1,49 @@
+mt5_terminal_path: 'C:\Program Files\MetaTrader 5\terminal64.exe'
+mode: backtest                 # backtest | paper | live
+enable_order_submission: false # second lock; keep false initially
+live_confirmation: ""          # exact phrase required in live mode
+symbol: XAUUSD                 # change for suffix, e.g. XAUUSDm
+timeframe: M5
+magic_number: 26091801
+poll_seconds: 2
+
+risk:
+  risk_per_trade_pct: 0.5
+  daily_profit_target_pct: 2.0
+  daily_loss_limit_pct: 1.5
+  max_trades_per_day: 3
+  max_open_positions: 1
+  max_spread_points: 60
+  min_stop_points: 100
+  max_stop_points: 1000
+  max_lot: 0.10
+  consecutive_loss_limit: 2
+  emergency_drawdown_pct: 5.0
+  max_total_lots: 0.10
+
+session:
+  timezone: UTC
+  start: "07:00"
+  end: "17:00"
+
+execution:
+  deviation_points: 20
+  comment: goldbot-v1
+
+backtest:
+  initial_balance: 10000
+  point_size: 0.01
+  spread_price_fallback: 0.30
+  slippage_price: 0.05
+  commission_per_trade: 0.00
+
+validation_gates:
+  minimum_out_of_sample_trades: 100
+  minimum_profit_factor: 1.20
+  maximum_drawdown_pct: 10.0
+  require_positive_out_of_sample: true
+
+paths:
+  daily_state: state/daily_state.json
+  journal: logs/trades.sqlite3
+  kill_switch: state/kill_switch.json

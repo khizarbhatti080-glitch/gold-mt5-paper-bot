@@ -1,0 +1,37 @@
+{
+  "strategy": "london_fvg_trend_v04",
+  "results": {
+    "XAUUSD": {
+      "error": "missing history: data/portfolio/xauusd_m15.csv"
+    },
+    "XAGUSD": {
+      "error": "missing history: data/portfolio/xagusd_m15.csv"
+    },
+    "SOLUSD": {
+      "error": "missing history: data/portfolio/solusd_m15.csv"
+    },
+    "EURUSD": {
+      "error": "missing history: data/portfolio/eurusd_m15.csv"
+    },
+    "GBPUSD": {
+      "error": "missing history: data/portfolio/gbpusd_m15.csv"
+    },
+    "USDJPY": {
+      "error": "missing history: data/portfolio/usdjpy_m15.csv"
+    },
+    "USDCHF": {
+      "error": "missing history: data/portfolio/usdchf_m15.csv"
+    },
+    "AUDUSD": {
+      "error": "missing history: data/portfolio/audusd_m15.csv"
+    },
+    "NZDUSD": {
+      "error": "missing history: data/portfolio/nzdusd_m15.csv"
+    },
+    "USDCAD": {
+      "error": "missing history: data/portfolio/usdcad_m15.csv"
+    }
+  },
+  "approved_symbols": [],
+  "portfolio_demo_eligible": false
+}

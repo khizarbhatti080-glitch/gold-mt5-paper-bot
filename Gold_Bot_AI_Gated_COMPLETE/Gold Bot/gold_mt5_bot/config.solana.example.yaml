@@ -1,0 +1,48 @@
+mode: backtest
+enable_order_submission: false
+live_confirmation: ""
+symbol: SOLUSD                  # replace with exact broker symbol found by find-symbol
+timeframe: M15
+magic_number: 26091902
+poll_seconds: 2
+
+risk:
+  risk_per_trade_pct: 0.5
+  daily_profit_target_pct: 2.0
+  daily_loss_limit_pct: 1.5
+  max_trades_per_day: 1
+  max_open_positions: 1
+  max_spread_points: 100
+  min_stop_points: 20
+  max_stop_points: 10000
+  max_lot: 0.10
+  consecutive_loss_limit: 2
+  emergency_drawdown_pct: 5.0
+  max_total_lots: 0.10
+
+session:
+  timezone: UTC
+  start: "00:00"
+  end: "23:59"
+
+execution:
+  deviation_points: 30
+  comment: solbot-research
+
+backtest:
+  initial_balance: 10000
+  point_size: 0.01             # verify against find-symbol output
+  spread_price_fallback: 0.20 # CSV spread is preferred when available
+  slippage_price: 0.05
+  commission_per_trade: 0.00
+
+validation_gates:
+  minimum_out_of_sample_trades: 100
+  minimum_profit_factor: 1.20
+  maximum_drawdown_pct: 10.0
+  require_positive_out_of_sample: true
+
+paths:
+  daily_state: state/sol_daily_state.json
+  journal: logs/sol_trades.sqlite3
+  kill_switch: state/sol_kill_switch.json

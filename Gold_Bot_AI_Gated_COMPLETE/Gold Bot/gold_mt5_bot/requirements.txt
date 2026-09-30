@@ -1,0 +1,4 @@
+MetaTrader5==5.0.5509
+PyYAML==6.0.2
+pytest==8.3.5
+tzdata==2026.4

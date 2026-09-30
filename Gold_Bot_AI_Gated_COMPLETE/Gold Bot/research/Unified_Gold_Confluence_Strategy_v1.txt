@@ -1,0 +1,300 @@
+UNIFIED GOLD CONFLUENCE STRATEGY v1.0
+
+Purpose
+This strategy combines the strongest compatible elements from the three supplied trading transcripts into one mechanical XAUUSD system:
+- Higher-timeframe market bias and fair value gaps.
+- H1/M15 trend alignment and points of interest.
+- Liquidity sweep followed by a confirmed market-structure shift.
+- Failed-auction/order-flow confirmation when reliable futures data is available.
+
+The system must be backtested and paper traded before demo or live execution.
+
+============================================================
+1. MARKET, TIMEFRAMES, AND SESSIONS
+============================================================
+
+Market
+- XAUUSD only for the first validation version.
+
+Timeframes
+- Daily: broad directional context.
+- H4: primary bias, displacement, FVG, order block, and external liquidity.
+- H1: trend alignment and current dealing range.
+- M15: point of interest, liquidity sweep, structure shift, entry, stop, and target.
+
+Trading windows
+- London window: 07:00-10:00 UTC.
+- New York window: 13:30-16:00 UTC.
+- The precise windows must be converted from UTC using broker-server time.
+- Do not open a new trade outside these windows.
+- Do not open new trades late Friday.
+
+News filter
+- No new entry from 30 minutes before until 30 minutes after a high-impact USD event.
+- For CPI, NFP, FOMC rate decisions, or Powell/Fed press conferences, use a 60-minute buffer on each side unless testing proves a different rule.
+
+============================================================
+2. DEFINITIONS
+============================================================
+
+Swing high
+- A candle whose high is greater than the highs of the two candles immediately before and after it.
+
+Swing low
+- A candle whose low is lower than the lows of the two candles immediately before and after it.
+
+Bullish break of structure
+- A candle closes above the latest confirmed swing high.
+
+Bearish break of structure
+- A candle closes below the latest confirmed swing low.
+
+Bullish displacement
+- A strong bullish candle or sequence that closes above a confirmed swing high and leaves a bullish FVG.
+
+Bearish displacement
+- A strong bearish candle or sequence that closes below a confirmed swing low and leaves a bearish FVG.
+
+Bullish FVG
+- In a three-candle sequence, candle 3 low is above candle 1 high. The gap between those prices is the FVG.
+
+Bearish FVG
+- In a three-candle sequence, candle 3 high is below candle 1 low. The gap between those prices is the FVG.
+
+Order block
+- The final opposite-colored candle before displacement breaks structure. Treat its full high-low range as a zone.
+
+Liquidity pool
+- A confirmed swing high/low, equal highs/lows, previous-day high/low, or session high/low where stops are likely concentrated.
+
+Bullish liquidity sweep
+- Price trades below a marked low/liquidity pool but an M15 candle closes back above that level.
+
+Bearish liquidity sweep
+- Price trades above a marked high/liquidity pool but an M15 candle closes back below that level.
+
+Bullish market-structure shift
+- After a bullish liquidity sweep, an M15 candle closes above the last internal lower high.
+
+Bearish market-structure shift
+- After a bearish liquidity sweep, an M15 candle closes below the last internal higher low.
+
+============================================================
+3. HIGHER-TIMEFRAME BIAS
+============================================================
+
+Bullish bias requires all of the following
+1. H4 has produced a bullish break of structure with displacement.
+2. The latest H4 dealing range is defined from the impulse swing low to swing high.
+3. Price is at or below the 50% midpoint of that range, or is retracing into a bullish H4 FVG/order block below equilibrium.
+4. H1 structure is bullish or has not closed below the H4 invalidation swing low.
+
+Bearish bias requires all of the following
+1. H4 has produced a bearish break of structure with displacement.
+2. The latest H4 dealing range is defined from the impulse swing high to swing low.
+3. Price is at or above the 50% midpoint of that range, or is retracing into a bearish H4 FVG/order block above equilibrium.
+4. H1 structure is bearish or has not closed above the H4 invalidation swing high.
+
+No-trade bias
+- H4 direction is unclear or sideways.
+- H4 and H1 structures directly conflict.
+- Price is in the middle of the range with no nearby FVG/order-block confluence.
+- The higher-timeframe target has already been reached.
+
+============================================================
+4. POINT OF INTEREST
+============================================================
+
+For a long setup
+- Mark a bullish H4 FVG or bullish order block in discount.
+- Refine it using an overlapping bullish H1 or M15 demand/FVG zone.
+- A valid zone must have caused clear bullish displacement or a break of structure.
+- Mark sell-side liquidity below a recent M15 low inside or immediately beneath the zone.
+
+For a short setup
+- Mark a bearish H4 FVG or bearish order block in premium.
+- Refine it using an overlapping bearish H1 or M15 supply/FVG zone.
+- A valid zone must have caused clear bearish displacement or a break of structure.
+- Mark buy-side liquidity above a recent M15 high inside or immediately above the zone.
+
+Do not enter merely because price touches the point of interest.
+
+============================================================
+5. LONG ENTRY RULES
+============================================================
+
+Every condition is mandatory
+1. Higher-timeframe bias is bullish.
+2. Current time is within an approved trading window.
+3. No news restriction is active.
+4. Price enters the predefined bullish point of interest.
+5. Price sweeps marked sell-side liquidity.
+6. The sweep candle closes back above the swept level.
+7. Within the next four M15 candles, price closes above the last internal M15 lower high, confirming a bullish market-structure shift.
+8. The structure-shift move leaves a bullish M15 FVG or identifiable demand/order-block zone.
+9. Place a limit entry at the 50% midpoint of that new M15 FVG. If there is no FVG, use the first retest of the shift-causing order block.
+10. Cancel the pending entry if it is not filled within four M15 candles, the target is reached first, or price closes below the protected sweep low.
+
+Long stop loss
+- Place the stop below the protected sweep low plus a safety buffer.
+- Safety buffer = max(current spread x 1.5, 0.10 x M15 ATR(14)).
+
+Long target
+- Primary target: nearest unswept M15 swing high, session high, previous-day high, or opposing supply zone.
+- The planned target must provide at least 1.5R after estimated spread and slippage.
+- If the nearest target offers less than 1.5R, skip the trade.
+
+============================================================
+6. SHORT ENTRY RULES
+============================================================
+
+Every condition is mandatory
+1. Higher-timeframe bias is bearish.
+2. Current time is within an approved trading window.
+3. No news restriction is active.
+4. Price enters the predefined bearish point of interest.
+5. Price sweeps marked buy-side liquidity.
+6. The sweep candle closes back below the swept level.
+7. Within the next four M15 candles, price closes below the last internal M15 higher low, confirming a bearish market-structure shift.
+8. The structure-shift move leaves a bearish M15 FVG or identifiable supply/order-block zone.
+9. Place a limit entry at the 50% midpoint of that new M15 FVG. If there is no FVG, use the first retest of the shift-causing order block.
+10. Cancel the pending entry if it is not filled within four M15 candles, the target is reached first, or price closes above the protected sweep high.
+
+Short stop loss
+- Place the stop above the protected sweep high plus a safety buffer.
+- Safety buffer = max(current spread x 1.5, 0.10 x M15 ATR(14)).
+
+Short target
+- Primary target: nearest unswept M15 swing low, session low, previous-day low, or opposing demand zone.
+- The planned target must provide at least 1.5R after estimated spread and slippage.
+- If the nearest target offers less than 1.5R, skip the trade.
+
+============================================================
+7. OPTIONAL ORDER-FLOW FILTER
+============================================================
+
+Use this only with reliable centralized futures order-flow data, such as COMEX Gold futures. Standard MT5 tick volume is not equivalent to true bid/ask footprint data.
+
+Long confirmation
+- At the sweep low, aggressive negative delta is concentrated near the candle low but cannot produce continued downside.
+- The next attempt by sellers fails at a higher price.
+- Buyer aggression then produces upward price progress.
+
+Short confirmation
+- At the sweep high, aggressive positive delta is concentrated near the candle high but cannot produce continued upside.
+- The next attempt by buyers fails at a lower price.
+- Seller aggression then produces downward price progress.
+
+The core strategy must be backtested without this filter first. Test the order-flow filter as a separate variant.
+
+============================================================
+8. POSITION SIZE AND PORTFOLIO RISK
+============================================================
+
+Risk per trade
+- Paper/demo baseline: 0.25% of current account balance.
+- Maximum after successful validation: 0.50% per trade.
+- Never use the transcript's higher challenge-account risk as the live default.
+
+Position size
+- Risk cash = account balance x risk percentage.
+- Stop distance = absolute difference between entry and stop.
+- Calculate lot size using the broker's XAUUSD tick size, tick value, volume step, minimum volume, and maximum volume.
+- Round the calculated lot size downward to the broker's permitted volume step.
+
+Limits
+- Maximum one open XAUUSD trade.
+- Maximum two XAUUSD entries per trading day.
+- Stop opening new trades after two consecutive losses in one day.
+- Daily loss limit: 1.0% of starting daily balance.
+- Daily profit target: 1.0% of starting daily balance; after reaching it, open no new trades that day.
+- Never add to a losing trade.
+- Scaling is disabled in version 1.
+
+============================================================
+9. TRADE MANAGEMENT
+============================================================
+
+- Never remove or widen the original stop.
+- Do not move the stop merely because the trade shows a small profit.
+- At +1R, move the stop to breakeven only if M15 has closed beyond a new structural level in the trade direction.
+- Close the full position at the predefined structural target for version 1.
+- Do not use discretionary partial exits until separately tested.
+- Exit early if an M15 candle closes through the protected sweep level before the target is reached.
+- Close any remaining intraday position before the broker's daily rollover unless an overnight variant has been separately tested.
+
+============================================================
+10. SPREAD, EXECUTION, AND SAFETY FILTERS
+============================================================
+
+- Do not enter when spread exceeds the maximum established during backtesting.
+- Do not enter if expected slippage reduces the planned reward below 1.5R.
+- Do not enter if MT5 has stale quotes, the symbol is not tradable, or required history is missing.
+- Evaluate signals only after an M15 candle has closed; never use incomplete candles for confirmation.
+- Generate at most one signal from each closed M15 candle.
+- Store every rejected setup with its rejection reason.
+
+============================================================
+11. MECHANICAL SETUP CHECKLIST
+============================================================
+
+Before a long
+[ ] H4 bullish displacement and break of structure.
+[ ] Price in H4 discount/FVG/order block.
+[ ] H1 agrees or has not invalidated H4.
+[ ] Approved session and no news block.
+[ ] Price reaches a predefined bullish POI.
+[ ] M15 sell-side liquidity swept and reclaimed.
+[ ] M15 closes above last internal lower high within four candles.
+[ ] New bullish M15 FVG/order block exists.
+[ ] Entry, stop, and structural target are defined.
+[ ] Net reward-to-risk is at least 1.5R.
+[ ] Risk and daily limits permit the trade.
+
+Before a short
+[ ] H4 bearish displacement and break of structure.
+[ ] Price in H4 premium/FVG/order block.
+[ ] H1 agrees or has not invalidated H4.
+[ ] Approved session and no news block.
+[ ] Price reaches a predefined bearish POI.
+[ ] M15 buy-side liquidity swept and rejected.
+[ ] M15 closes below last internal higher low within four candles.
+[ ] New bearish M15 FVG/order block exists.
+[ ] Entry, stop, and structural target are defined.
+[ ] Net reward-to-risk is at least 1.5R.
+[ ] Risk and daily limits permit the trade.
+
+If any mandatory box is unchecked, do not trade.
+
+============================================================
+12. BACKTEST AND APPROVAL PLAN
+============================================================
+
+Test variants separately
+- Variant A: core rules without order-flow data.
+- Variant B: core rules plus order-flow confirmation.
+- Variant C: London session only.
+- Variant D: New York session only.
+
+Minimum data
+- At least two years of M15 data covering different volatility regimes.
+- Walk-forward split: 70% development/in-sample and 30% untouched out-of-sample.
+- Include broker spread, commission, slippage, and swap where applicable.
+
+Minimum approval gates before demo order submission
+- At least 100 out-of-sample trades.
+- Profit factor at least 1.20.
+- Positive out-of-sample net return.
+- Maximum drawdown no greater than 10%.
+- No single month contributes an unreasonable share of total profit.
+- Results remain acceptable after increasing modeled costs and slippage.
+
+Forward-paper gate
+- Run continuously for at least 30 paper trades after backtest approval.
+- Confirm signals use only information available at the time and do not repaint.
+- Compare paper entries with chart screenshots and broker prices.
+
+Demo/live progression
+- Backtest approval -> virtual paper -> MT5 demo with minimum lot -> extended demo review -> live decision.
+- Live order submission remains disabled until every preceding gate passes.
+

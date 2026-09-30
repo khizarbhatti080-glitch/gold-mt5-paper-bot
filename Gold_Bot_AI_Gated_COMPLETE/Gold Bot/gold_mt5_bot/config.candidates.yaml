@@ -1,0 +1,42 @@
+mode: backtest
+enable_order_submission: false
+live_confirmation: ""
+symbol: XAUUSD
+timeframe: M15
+strategy: london_fvg_trend_v04
+split_ratio: 0.70
+magic_number: 26091903
+poll_seconds: 5
+
+# Replace names with the exact symbols returned by your broker. Symbols that
+# are unavailable are reported and skipped; they never unlock automatically.
+instruments:
+  - {symbol: XAUUSD, enabled: true, point_size: 0.01, spread_price_fallback: 0.30, slippage_price: 0.05}
+  - {symbol: GBPUSD, enabled: true, point_size: 0.00001, spread_price_fallback: 0.00020, slippage_price: 0.00005}
+
+risk:
+  risk_per_trade_pct: 0.25
+  daily_profit_target_pct: 2.0
+  daily_loss_limit_pct: 1.5
+  max_trades_per_day: 1
+  max_open_positions: 4
+  max_spread_points: 100
+  min_stop_points: 10
+  max_stop_points: 10000
+  max_lot: 0.10
+  consecutive_loss_limit: 3
+  emergency_drawdown_pct: 5.0
+  max_total_lots: 0.30
+
+session: {timezone: UTC, start: "00:00", end: "23:59"}
+execution: {deviation_points: 30, comment: portfolio-research}
+backtest: {initial_balance: 10000}
+validation_gates:
+  minimum_out_of_sample_trades: 100
+  minimum_profit_factor: 1.20
+  maximum_drawdown_pct: 10.0
+  require_positive_out_of_sample: true
+paths:
+  daily_state: state/portfolio_daily_state.json
+  journal: logs/portfolio_trades.sqlite3
+  kill_switch: state/portfolio_kill_switch.json
